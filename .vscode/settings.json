@@ -1,0 +1,13 @@
+{
+    "workbench.colorCustomizations": {
+        "[Monokai Vibrant]": {
+            "titleBar.activeBackground": "#ff06def1",
+            "titleBar.inactiveBackground": "#FFF222",
+            "titleBar.activeForeground": "#000000",
+            "titleBar.inactiveForeground": "#000000"
+        },
+        "activityBar.background": "#143417",
+        "titleBar.activeBackground": "#1C4921",
+        "titleBar.activeForeground": "#F5FBF6"
+    }
+}

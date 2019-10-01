@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Todo</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <h1 class="heading">YOUR'S TODO</h1>
+    <div class="container">
+
+        <div class="row app">
+            <div class="col-md-4">
+                <form>
+                    <p class="form-text lead">Enter Todo details</p>
+                    <div class="form-group">
+                        <smal class="form-text">Todo Name</smal>
+                        <input id="todoinputbox" type="text" class="form-control" placeholder="meeting at 11 am">
+                        <smal class="form-text">Discription</smal>
+                        <input id="discription" type="text" class="form-control" placeholder="little bit about todo">
+                    </div>
+
+                    <button id="submit_button" class="btn">Submit</button>
+                    <button id="reset_button" class="btn">clear all todo</button>
+                </form>
+            </div>
+            <div class="col-md-8">
+                <div class="todos-area">
+                    <h4 class="todo-heading pt-2">Todo list <img src="/16760770071554126469.svg" width="32px;"></img>
+                    </h4>
+                    <ul class="list-group" id="list_ul">
+                        <!-- dynamically li will added via js -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>
