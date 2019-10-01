@@ -30,7 +30,7 @@ document.getElementById("submit_button").addEventListener("click", function (e) 
   }
 });
 data.forEach(i => {
-  // createlist(i);
+  createlist(i);
 });
 
 //removing whole todo list from UI as well as from local Storage
