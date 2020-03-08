@@ -1,4 +1,4 @@
-var ul = document.getElementById("list_ul");
+var ul = document.getElementById("accordionExample");
 let itemArray;
 if (localStorage.getItem("items")) {
   itemArray = JSON.parse(localStorage.getItem("items"));
@@ -6,30 +6,46 @@ if (localStorage.getItem("items")) {
   itemArray = [];
 }
 
-localStorage.setItem("items", JSON.stringify(itemArray)); //setting todo to local storage
-const data = JSON.parse(localStorage.getItem("items")); // getting todo back from local storage
+let i=0;
+function createlist(ob) {
+  var list = document.createElement("div");
+  list.classList.add("card");
+  var str=ob.discription.split(',');
+  var d=str.map(e=>`<span class="desc-p">${e}</span>`).join("");
+  list.innerHTML = `
+    <div class="card-header" id="headingOne" >
+      <h4>${ob.todo}</h4>
+      <img src="deletetodo.png" class="delete_todo">
+      <div class="d">${d}</div>
+    </div>
+  `;
+  document.getElementById("accordionExample").appendChild(list);
 
-function createlist(todo) {
-  console.log(todo);
-  var list = document.createElement("li");
-  list.classList.add("list-group-item");
-  list.innerHTML = `<span id="list_value">${todo}</span> <img src="/deletetodo.png" width="32px;" class="delete_todo"></img>`;
-  document.getElementById("list_ul").appendChild(list);
+
 }
+
+
 
 document.getElementById("submit_button").addEventListener("click", function (e) {
   e.preventDefault();
+  
   let todo = document.getElementById("todoinputbox").value;
-  if (todo != "" && todo != " ") {
-    itemArray.push(todo); //pushing todos to array
+  let discription = document.getElementById("discription").value;
+  var ob={
+    todo:todo,
+    discription:discription
+  }
+  if (todo != "" && discription != " ") {
+    itemArray.push(ob); //pushing todos to array
     localStorage.setItem("items", JSON.stringify(itemArray));
-    createlist(todo);
+    createlist(ob);
     document.getElementById("todoinputbox").value = "";
+    document.getElementById("discription").value="";
   } else {
     console.log("err");
   }
 });
-data.forEach(i => {
+itemArray.forEach(i => {
   createlist(i);
 });
 
@@ -49,9 +65,12 @@ ul.addEventListener("click", e => {
   if (e.target.matches(".delete_todo")) {
     var ul = e.target.parentNode.parentNode; //ul
     var target = e.target.parentNode; //li
+    console.log(String(target.firstChild.nextSibling.innerText));
     for (var i = 0 in itemArray) {
-      if (itemArray[i] == String(target.firstChild.innerHTML)) {
+      console.log(itemArray[i].title);
+      if (String(itemArray[i].todo) == String(target.firstChild.nextSibling.innerText)) {
         //removing array item
+        console.log("haha");
         itemArray.splice(i, 1);
         break;
       }

@@ -34,15 +34,30 @@ body {
   margin-top: 5%;
   color: #ffc40a;
 }
+.desc-p{
+  background-color: #17192b;
+  color: #ffc40a;
+  padding: 0px 15px;
+  border-radius: 20px;
+  margin-left: 10px;
+  padding:2px 10px;
 
+}
+.d{
+  margin: 5px 0px 0px -20px;
+}
 .app {
   margin: 5% auto;
   padding-bottom: 2%;
   padding-top: 2%;
 }
-
-.list-group-item img {
+.card-header{
+  color:#1c203d;
+}
+.card-header img {
   float: right;
+  margin-top: -10px;
+  width: 40px;
 }
 
 .list-group-item {
