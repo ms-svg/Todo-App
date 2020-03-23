@@ -83,38 +83,46 @@ ul.addEventListener("click", e => {
 });
 
 //updating a todo
+// so basically here we are updating the todo 
+// if target element is edit button && their {target.parentNode.firstChild.nextSibling} is todo
+  // so grab the todo get his previous value store in prestate and make the input editable
+  // let user enter value store taht value in global ans variable on keyup event
+  // edit part is done
+
+// if target is update button first we check if the user edit the todo or not if not do nothing
+      // if user edit the todo. then take updated value stored in global variable ans;
+      // and update the array ,set the local storage 
+      // done 
+var isedit=false;
 var ans;
 var prestate;
 var todonode;
 ul.addEventListener("click",e=>{
-
   var targetup=e.target;
-  var targetedit = e.target.parentNode.firstChild.nextSibling; //li
-  todonode=e.target;
-  
-  if(targetedit.matches(".todo-s")){
+  var targetedit = e.target.parentNode.firstChild.nextSibling;
+  console.log(targetup);
+  console.log(targetedit);
+  if(targetedit.matches(".todo-s") && e.target.matches('.edit')){
     targetedit.removeAttribute("readonly");
     targetedit.removeAttribute("class");
     prestate=targetedit.value;
+    isedit=true;
+    console.log(123);
     // console.log(prestate);
     targetedit.addEventListener('keyup',e=>{
       ans=targetedit.value;
-
     });
   }
-  if(targetup.matches(".UP")){
+  if(targetup.matches(".UP") && isedit){
     console.log("yes");
     console.log(ans);
     for (var i = 0 in itemArray) {
       console.log(itemArray[i].todo);
       console.log(prestate);
       if (String(itemArray[i].todo) == prestate){
-        //removing array item
-        // console.log("haha");
+        // here we are updating array item
         itemArray[i].todo=ans;
-        // console.log(itemArray[i].todo);
         localStorage.setItem("items", JSON.stringify(itemArray));
-        // console.log(targetup);
         targetup.parentNode.firstChild.nextSibling.classList.add("todo-s");
         break;
       }
