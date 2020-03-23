@@ -14,7 +14,11 @@ body {
 .todo-heading {
   text-align: center;
 }
-
+.todo-s{
+    border: none;
+    font-size: 1.3em;
+    background: transparent;
+}
 .mt-5 {
   margin-top: 5%;
 }

@@ -14,7 +14,9 @@ function createlist(ob) {
   var d=str.map(e=>`<span class="desc-p">${e}</span>`).join("");
   list.innerHTML = `
     <div class="card-header" id="headingOne" >
-      <h4>${ob.todo}</h4>
+      <input type="text" class="todo-s"readonly value="${ob.todo}"></input>
+      <span class="edit">[edit]</span>
+      <span class="UP">[UP]</span>
       <img src="deletetodo.png" class="delete_todo">
       <div class="d">${d}</div>
     </div>
@@ -65,10 +67,10 @@ ul.addEventListener("click", e => {
   if (e.target.matches(".delete_todo")) {
     var ul = e.target.parentNode.parentNode; //ul
     var target = e.target.parentNode; //li
-    console.log(String(target.firstChild.nextSibling.innerText));
+    console.log(String(target.firstChild.nextSibling.value));
     for (var i = 0 in itemArray) {
-      console.log(itemArray[i].title);
-      if (String(itemArray[i].todo) == String(target.firstChild.nextSibling.innerText)) {
+      console.log(itemArray[i].todo);
+      if (String(itemArray[i].todo) == String(target.firstChild.nextSibling.value)) {
         //removing array item
         console.log("haha");
         itemArray.splice(i, 1);
@@ -79,3 +81,44 @@ ul.addEventListener("click", e => {
     ul.removeChild(target);
   }
 });
+
+//updating a todo
+var ans;
+var prestate;
+var todonode;
+ul.addEventListener("click",e=>{
+
+  var targetup=e.target;
+  var targetedit = e.target.parentNode.firstChild.nextSibling; //li
+  todonode=e.target;
+  
+  if(targetedit.matches(".todo-s")){
+    targetedit.removeAttribute("readonly");
+    targetedit.removeAttribute("class");
+    prestate=targetedit.value;
+    // console.log(prestate);
+    targetedit.addEventListener('keyup',e=>{
+      ans=targetedit.value;
+
+    });
+  }
+  if(targetup.matches(".UP")){
+    console.log("yes");
+    console.log(ans);
+    for (var i = 0 in itemArray) {
+      console.log(itemArray[i].todo);
+      console.log(prestate);
+      if (String(itemArray[i].todo) == prestate){
+        //removing array item
+        // console.log("haha");
+        itemArray[i].todo=ans;
+        // console.log(itemArray[i].todo);
+        localStorage.setItem("items", JSON.stringify(itemArray));
+        // console.log(targetup);
+        targetup.parentNode.firstChild.nextSibling.classList.add("todo-s");
+        break;
+      }
+    }
+  }
+
+})
