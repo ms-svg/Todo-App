@@ -94,7 +94,7 @@ ul.addEventListener("click", e => {
       // and update the array ,set the local storage 
       // done 
 var isedit=false;
-var ans;
+var newvalue;
 var prestate;
 var todonode;
 ul.addEventListener("click",e=>{
@@ -110,18 +110,18 @@ ul.addEventListener("click",e=>{
     console.log(123);
     // console.log(prestate);
     targetedit.addEventListener('keyup',e=>{
-      ans=targetedit.value;
+      newvalue=targetedit.value;
     });
   }
   if(targetup.matches(".UP") && isedit){
     console.log("yes");
-    console.log(ans);
+    console.log(newvalue);
     for (var i = 0 in itemArray) {
       console.log(itemArray[i].todo);
       console.log(prestate);
       if (String(itemArray[i].todo) == prestate){
         // here we are updating array item
-        itemArray[i].todo=ans;
+        itemArray[i].todo=newvalue||prestate;//if new value is undefined that is user did not changed then prestate will assign
         localStorage.setItem("items", JSON.stringify(itemArray));
         targetup.parentNode.firstChild.nextSibling.classList.add("todo-s");
         break;
