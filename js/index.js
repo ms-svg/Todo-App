@@ -25,9 +25,6 @@ function createlist(ob) {
 
 
 }
-
-
-
 document.getElementById("submit_button").addEventListener("click", function (e) {
   e.preventDefault();
   
@@ -129,4 +126,17 @@ ul.addEventListener("click",e=>{
     }
   }
 
-})
+});
+
+
+//getting date daily
+var months=['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec']
+let days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+(function getdate(){
+  const date=new Date();
+  console.log(date.getDay(),date.getMonth(),date.getFullYear(),date.getDate());
+  document.querySelector('.date').innerHTML=`
+  <span>${days[date.getDay()]}-<span>${date.getDate()}-</span></span>${months[date.getMonth()+1]}-<span>${date.getFullYear()}</span>
+  `;
+  
+})();
